@@ -1,0 +1,16 @@
+the activity table will be updated in every script, sell.php, follows.php...
+user_id -> the id of the user doing the activity
+activity -> type of activity
+link -> link to activity
+
+activity -> 
+types:              link
+comment             view-item.php?pid
+follow              account.php?uid
+unfollow            account.php?uid
+add product         view-item.php?pid
+update profile      account.php?uid
+created an account  account.php?uid
+ 
+          
+          

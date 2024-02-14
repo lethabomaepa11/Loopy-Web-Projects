@@ -1,0 +1,96 @@
+/* this css stylesheet is used in shops,account and category files and other files which might be suitable
+**this file overrides some of the element's styles, use with caution
+
+*/
+
+
+
+    .ada
+    {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      animation: appear 0.3s ease-in-out;
+      justify-content: center;
+      align-items: center;
+      background-color: inherit;
+    }
+    .head
+    {
+      background-color: #fff;
+      border-block: 1px solid #ddd;
+      color: #000;
+      border-radius: 0;
+    }
+    .head i
+    {
+      color: #000;
+      font-size: 12pt;
+    }
+    .head-one
+    {
+      border: none;
+      margin-block: 5px;
+      width: 95%;
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      color: #0b5275;
+      border-radius: 4px;
+      padding-left: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    input, select
+    {
+      height: 35px;
+      width: 100%;
+      border: none;
+      background-color:#ddd;
+      outline: none;
+      border-radius: 4px;
+      padding-block: 5px;
+      margin-block: 5px;
+    }
+    fieldset 
+  {
+    border: none;
+    border-block: 1px solid #ddd;
+  }
+  legend
+  {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  label
+  {
+    font-size: 10pt;
+  }
+  .slogan
+  {
+    color: #136767;
+    font-size: 10pt;
+  }
+  fieldset
+  {
+    margin-bottom: 20px;
+  }
+ .float-left
+    {
+      float: left;
+      margin: 0;
+      margin-top: 17px;
+      margin-left: 10px;
+    }
+    .seller img,.follower img
+    {
+      border-radius: 50%;
+      aspect-ratio: 1;
+      width: 100%;
+      border: 1px solid #0b5275;
+    }
+    
+  .date
+  {
+    color: #ddd;
+  }

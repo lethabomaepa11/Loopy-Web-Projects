@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/css/fontawesome.css" rel="stylesheet">
+    <link href="assets/css/brands.css" rel="stylesheet">
+    <link href="assets/css/solid.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/second.css">
+  <link rel="icon" href="assets/images/logo.jpg">
+ 
+  <title>Listen to Music</title>
+  <style>
+    body
+    {
+      
+    }
+    *
+    {
+      font-family: VarelaRound;
+    }
+    .music_container
+    {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-block: 10px;
+    }
+    .now_playing
+    {
+      width: 98%;
+      height: 40px;
+      border-radius: 8px;
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .now_playing i
+    {
+      font-size: 1.7rem;
+    }
+    .image,.now_playing,.controls,.songs,.info
+    {
+     /* background-color: rgba(0,0,0,0.1);
+      */border-radius: 8px;
+    }
+    .image
+    {
+      margin-block: 5px;
+      aspect-ratio: 16/9;
+      width: 98%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(#d4368c,#fff);
+    }
+    .center
+    {
+      width: 60px;
+      height: 60px;
+      background-color: #d4368c;
+      border-radius: 50%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+    }
+    .center i 
+    {
+      font-size: 20px;
+      margin-block: 13px;
+     
+    }
+    .image img 
+    {
+      object-fit: cover;
+      width: 60%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid #d4368c;
+    }
+    .info,.info span
+    {
+      margin-block: 5px;
+      width: 98%;
+      display: grid;
+      justify-content: center;
+      
+      grid-template-columns: repeat(2,1fr);
+    }
+    .info span
+    {
+      font-size: 0.8rem;
+    }
+    .info
+    {
+      display: block;
+      background-color: rgba(0,0,0,0.1);
+      
+    }
+    .info h3
+    {
+      text-align: center;
+      white-space: nowrap;
+    }
+    .controls
+    {
+      height: 80px;
+      width: 98%;
+      display: flex;
+      position: sticky;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .controls i 
+    {
+      margin-inline: 5%;
+      font-size: 2rem;
+    }
+    .center
+    {
+      font-size: 2rem;
+    }
+    .songs
+    {
+      margin-block: 5px;
+      height: 35%;
+      width: 98%;
+      overflow: scroll;
+      
+    }
+    .progress
+    {
+      width: 99%;
+    }
+    
+    #progress-container,#progress-bar
+    {
+      background-color: #d4368c;
+      width: 100%;
+      height: 8px;
+      border-radius: 8px;
+    }
+    #progress-container
+    {
+      background-color: rgba(0,0,0,0.2);
+    }
+    @keyframes rotate
+    {
+      from{
+        transform: rotate(0deg);
+      }
+      to{
+        transform: rotate(360deg);
+      }
+    }
+    .songs div
+    {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-radius: 8px;
+    }
+    .songs div:hover
+    {
+      background-color: #d4368cb2;
+    }
+    .songs div i 
+    {
+      font-size: 1rem;
+      margin-inline: 8%;
+    }
+    .songs div span 
+    {
+      display: flex;
+      align-items: center;
+    }
+    .songs img 
+    {
+      height: 30px;
+      width: 30px;
+      border-radius: 50%;
+    }
+    audio
+    {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <audio id="audio" controls>
+    <source id="source" src="none"/>
+  </audio>
+  <div class="music_container">
+    <div class="now_playing">
+      <i class="fa fa-bars"></i>
+      <marquee id="now_playing">Now playing:</marquee>
+    </div>
+    <div class="image">
+     <img id="image" src="assets/images/drip.jpg">
+    </div>
+    <div class="progress">
+      <div id="progress-container">
+      <div id="progress-bar"></div></div>
+      <div class="space-btwn">
+        <span id="progress-tooltip">0:00</span>
+        <span id="duration"></span>
+      </div>
+    </div>
+    <div class="controls">
+      <i id="back" class="fa fa-step-backward"></i>
+      <button id="playPause" class="center"><i id="playPauseIcon" class="fa fa-play"></i></button>
+      <i id="next" class="fa fa-step-forward"></i>
+    </div>
+    <div class="info">
+      <h3 id="name"></h3>
+      <span>
+      <p id="artist">Artist: </p>
+      <p id="album">Album: </p>
+      <p id="year">Year: </p>
+      <p id="genre">Genre:</p>
+      </span>
+    </div>
+    <div class="songs">
+      <h4>Next:</h4>
+      <div>
+        <span>
+          <img src="assets/images/phone.jpg">
+          <p>Song Name</p>
+        </span>
+        <i class="fa fa-play"></i>
+      </div>
+      <div>
+        <span>
+          <img src="assets/images/phone.jpg">
+          <p>Song Name</p>
+        </span>
+        <i class="fa fa-play"></i>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded",function()
+    {
+      const audio = document.getElementById("audio");
+      const playPause = document.getElementById("playPause");
+      const back = document.getElementById("back");
+      const next = document.getElementById("next");
+      const progress_container = document.getElementById("progress-container");
+      const progress_bar = document.getElementById("progress-bar");
+      const progress_tooltip = document.getElementById("progress-tooltip");
+      const duration = document.getElementById("duration");
+      const artist = document.getElementById("artist");
+      const now_playing = document.getElementById("now_playing");
+      const year = document.getElementById("year");
+      const genre = document.getElementById("genre");
+      const image = document.getElementById("image");
+      const album = document.getElementById("album");
+      const name = document.getElementById("name");
+      const playPauseIcon = document.getElementById("playPauseIcon");
+      
+      playPause.addEventListener("click",function()
+      {
+        if(audio.paused)
+        {
+          audio.play();
+          playPauseIcon.setAttribute("class","fa fa-pause");
+          image.style.animation = "rotate ease-in-out 3s infinite";
+        }
+        else
+        {
+          audio.pause();
+          playPauseIcon.setAttribute("class","fa fa-play");
+          image.style.animation = "none";
+        }
+      });
+      
+      setInterval(function()
+    {
+      if(audio.ended || forward)
+      {
+        indexer++;
+        forward = false;
+        changed = true;
+        audio.ended = false;
+      }
+      else if(backward)
+      {
+        backward = false;
+        indexer--;
+        changed = true;
+      }
+      
+      if(changed)
+      {
+        changed = false;
+        audio.setAttribute("src",music[indexer].audio);
+        audio.play();
+        image.style.animation = "rotate ease-in-out 3s infinite";
+      playPauseIcon.setAttribute("class","fa fa-pause");
+      //set everything
+      now_playing.textContent = "Now playing: "+music[indexer].name;
+      name.textContent = music[indexer].name;
+      image.setAttribute("src",music[indexer].image);
+      artist.textContent = "Artist: "+music[indexer].artist;
+      genre.textContent = "Genre: "+music[indexer].genre;
+      album.textContent = "Album: "+music[indexer].album;
+      year.textContent = "Year: "+music[indexer].year;
+      
+      //console.log(audio.duration);
+      }
+    },100);
+    
+    next.addEventListener("click",function()
+      {
+        if((indexer+1)<music.length)
+        {
+          forward = true;
+        }
+        else
+        {
+          forward = false;
+        }
+      });
+    back.addEventListener("click",function()
+    {
+      if((indexer-1)>=0)
+      {
+        backward = true;
+      }
+      else
+      {
+        audio.currentTime = 0;
+      }
+    });
+      
+      //timeUpdate
+      audio.addEventListener("timeupdate",function()
+      {
+        const percent = (audio.currentTime/audio.duration)*100;
+        progress_bar.style.width = percent+"%";
+        progress_tooltip.textContent = formatTime(audio.currentTime);
+        duration.textContent = formatTime(audio.duration);
+      });
+            // Progress bar functionality
+      progress_container.addEventListener('click', function (e) {
+        const clickX = e.pageX - this.getBoundingClientRect().left;
+        const percent = (clickX / this.offsetWidth) * 100;
+        audio.currentTime = (percent / 100) * audio.duration;
+        
+        
+      });
+        
+      
+
+      function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        seconds = Math.floor(seconds % 60);
+        return `${minutes}:${String(seconds).padStart(2, '0')}`;}
+    });
+    
+    //load the audio
+    const source = document.getElementById("source");
+    
+    class Song
+    {
+      name;
+      image;
+      audio;
+      artist;
+      genre;
+      album;
+      year
+    };
+    //for demo
+    let music = [];
+    let music_one = new Song();
+    music_one.name = "Dax - Life";
+    music_one.image = "assets/images/logo2.png";
+    music_one.audio = "assets/users/files/audio/Dax_-__LIFE___Official_Music_Video_.MP3";
+    music_one.artist = "Dax";
+    music_one.genre = "Hip Hop";
+    music_one.album = "Single";
+    music_one.year = "2024";
+    music[0] = music_one;
+    
+    let music_two = new Song();
+    music_two.name = "White Tee by Summer Walker";
+    music_two.image = "assets/images/drip.jpg";
+    music_two.audio = "assets/users/files/audio/Summer Walker Ft. NO1-NOAH – White Tee_(Naijaflavour.com).mp3";
+    music_two.artist = "Summer Walker";
+    music_two.genre = "Hip Hop";
+    music_two.album = "Single";
+    music_two.year = "Unknown";
+    music[1] = music_two;
+    
+    let indexer = 0;
+    let forward = false;
+    let backward = false;
+    let changed = true;
+   //audio.setAttribute("src",music[indexer].audio);
+
+  </script>
+  
+</body>
+</html>
