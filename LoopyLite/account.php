@@ -269,13 +269,16 @@ echo'
 .post 
 {
   margin-block: 5px;
-  border-bottom: 5px solid #eee;
 }
 .outlined-btn
 {
   padding: 0;
   text-align: center;
   width: 45%;
+}
+.index-content
+{
+  background-color: #eee;
 }
 
   </style>
@@ -684,7 +687,8 @@ echo'
       }
       echo'
       </fieldset>
-      </div>';
+      </div>
+      <div class="index-content">';
       //display posts
       if(!isset($_GET['uid']))
       {
@@ -773,6 +777,7 @@ echo'
           echo'
             
           </span>
+        </div>
         </div>
         </div>';
       }
