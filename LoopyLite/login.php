@@ -66,6 +66,11 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     $errors = true;
   }
 }
+else
+{
+  $errors = false;
+  $user = "";
+}
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +102,7 @@ if($_SERVER['REQUEST_METHOD']=="POST")
     flex-direction: column ;
     justify-content:center ;
     align-items: center;
+    width: 100%;
   }
   .form div
   {
@@ -105,6 +111,31 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   input
   {
     height: 44px;
+  }
+  
+
+  @media  screen and (min-width: 600px) 
+  {
+    body
+    {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #eee;
+    }
+    .form
+    {
+      min-width: 500px;
+      width: 500px;
+      box-shadow: 0 10px 13px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      background-color: #fff;
+    } 
+    input
+    {
+      width: 100%;
+    }
   }
   </style>
   <script>
@@ -151,11 +182,12 @@ if($_SERVER['REQUEST_METHOD']=="POST")
   </script>
   </head>
   <body>
+    
+    <div class="form">
     <center>
       <h1 class="logoh" style="width: fit-content;">LoopyLite</h1>
       </center>
       
-    <div class="form" style="width: 100%;">
      <div>
       <fieldset style="border-bottom: none;">
         
