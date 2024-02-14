@@ -609,3 +609,24 @@
   {
     text-decoration: none;
   }
+
+  /* for larger devices*/
+
+  @media screen  and (min-width: 600px) 
+  {
+    .ada, .post
+    {
+      width: 40%;
+      max-width: 400px;
+      border-radius: 8px;
+      margin: 10px;
+    }
+    .index-content
+    {
+      display: flex;
+      flex-wrap: wrap;
+      margin-inline: 5%;
+      width: 90%;
+    }
+    
+  }
