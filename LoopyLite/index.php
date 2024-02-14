@@ -190,7 +190,7 @@ pre
       <marquee style="font-weight: bold;">This will be an advert field</marquee>
     </div>
     
-    
+    <div class="index-content">
     <?php
     $items = ["product","post"];
     $product_disp = 0;
@@ -244,22 +244,7 @@ pre
       </span>
       </span>
       </a>
-      ';
-       
-      if($seller_id!=$id)
-      {
-        require_once("php/follow.php");
-        $uid = $seller_id;
-        if($follower)
-        {
-          echo'<button style="color:#ddd">Following</button>';
-        }
-        else
-        {
-          echo'<button>Follow</button>';
-        }
-      }
-      echo'
+     
       <!---<i class="fa fa-arrow-right float-right" style="margin-top:-50px"><p>View</p></i>--->
       </div>
       
@@ -382,6 +367,7 @@ pre
         $displayed++;
     }
         ?>
+        </div>
     <div class="advert">
       <marquee style="font-weight: bold;">This will be an advert field</marquee>
     </div>
