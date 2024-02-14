@@ -620,6 +620,11 @@
       max-width: 400px;
       border-radius: 8px;
       margin: 10px;
+      
+    }
+    .post{
+      max-height: 1000px;
+      overflow-y: scroll;
     }
     .index-content
     {
@@ -628,5 +633,6 @@
       margin-inline: 5%;
       width: 90%;
     }
+    
     
   }
