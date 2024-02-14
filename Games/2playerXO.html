@@ -1,0 +1,253 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>
+      Tic Tac Toe - 2Player
+    </title>
+    <link href="/assets/css/fontawesome.css" rel="stylesheet">
+
+    <link href="/assets/css/brands.css" rel="stylesheet">
+
+    <link href="/assets/css/solid.css" rel="stylesheet">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable= no">
+		<style>
+		  body, html
+		  {
+		    height: 100%;
+		    width: 100%;
+		    background: linear-gradient(cyan,royalblue);
+		    overflow: hidden;
+		  }
+		  .board
+		  {
+		    margin-top: 10px;
+		  width: 94%;
+		  margin-left: 2%;
+		  height: 100%;
+		  }
+		  .block
+		  {
+		    display: inline-block;
+		    height: 18%;
+		    width: 30%;
+		    margin: -2px;
+		  }
+		  .a,.g
+		  {
+		    border-right: 2px solid black;
+		  }
+		  .c, .i
+		  {
+		    border-left: 2px solid black;
+		  }
+		  .e
+		  {
+		    border: 2px solid black;
+		  }
+		  .d, .f
+		  {
+		    border-top: 2px solid black;
+		    border-bottom: 2px solid black;
+		  }
+		  header
+		  {
+		    display: flex;
+		    flex-direction: row;
+		    justify-content: center;
+		    align-items: center;
+		    width: 92%;
+		    margin-left: 4%;
+		    border-radius: 25px;
+		    border: 2px solid white;
+		  }
+		  .infoBoard
+		  {
+		    color: white;
+		    width: 100%;
+		    font-weight: bold;
+		    border-radius: 25px;
+		    border: 2px solid white;
+		    text-align: center;
+		  }
+		  .block p
+		  {
+		    position: absolute;
+		    font-size: 21pt;
+		    margin-left: 10%;
+		    margin-top: 5%;
+		    font-family: cursive;
+		    font-weight: bold;
+		    
+		  }
+		  button
+		  {
+		    height: 50px;
+		    width: 50%;
+		    border: none;
+		    background: linear-gradient(navy,royalblue);
+		    color: white;
+		    font-size: 12pt;
+		    border-radius: 8px;
+		    margin-left: 24%;
+		    margin-top: 20px;
+		    
+		  }
+		</style>
+		</head>
+		<header>
+		  <h3>Player 1: </h3><p> Score</p>  -<p>  Score</p><h3>Player2</h3>
+		</header>
+		<body>
+		  <div class="board">
+  		  <div onclick="getId('1');" class="block a">
+  		    <p id="1"></p>
+  		  </div>
+  		  <div onclick="getId('2');" class="block b">
+  		    <p id="2"></p>
+  		  </div>
+  		  <div onclick="getId('3');" class="block c">
+  		    <p id="3"></p>
+  		  </div>
+  		  <div onclick="getId('4');" class="block d">
+  		    <p id="4"></p>
+  		  </div>
+  		  <div onclick="getId('5');" class="block e">
+  		    <p id="5"></p>
+  		  </div>
+  		  <div onclick="getId('6');" class="block f">
+  		    <p id="6"></p>
+  		  </div>
+  		  <div onclick="getId('7');" class="block g">
+  		    <p id="7"></p>
+  		  </div>
+  		  <div onclick="getId('8');" class="block h">
+  		    <p id="8"></p>
+  		  </div>
+  		  <div onclick="getId('9');" class="block i">
+  		    <p id="9"></p>
+  		  </div>
+  		  <hr>
+  		  <div class="infoBoard">
+  		  <h3 id="info"></h3>
+  		</div>
+  		<form action="#">
+  		<button formaction="XOHome.html">Exit</button>
+  		</form>
+  		</div>
+  		<script>
+  		  let playerTrack = 0;
+  		  var comboP1 ="";
+  		  var comboP2 = "";
+  		  var combo ="";
+  		  let player = null;
+  
+  		  const arrOfWin = ["123","159","147","258","369","357","456","789"];
+  		  let arrClicked = ["0"];
+  		  
+  		  function getId(id = "0")
+  		  {
+  		    let is_Clicked = false;
+  		    //validate first
+  		    for(i = 0; i < playerTrack+1; i++)
+  		    {
+  		      if(id == arrClicked[i])
+  		      {
+  		        i = 100;
+  		        is_Clicked = true;
+  		        break;
+  		      }
+  		    }
+  		    if(is_Clicked == false)
+  		    {
+  		      
+    		    arrClicked[playerTrack] = id;
+    		    playerTrack++;//increment to identify who just played
+    		    let type = "X"
+  
+    		    
+    		    if(playerTrack%2 == 0)
+    		    {
+    		      
+    		      type = "O";
+    		      comboP2 += id;
+    		      console.log(comboP2);
+    		      combo = comboP2;
+    		    }
+    		    else
+    		    {
+    		      type = "X";
+    		      comboP1 += id;
+    		      console.log(comboP1);
+    		      combo = comboP1;
+    		    }
+    		    
+    		    document.getElementById(id).innerHTML = type;
+    		    checkWinner(type,combo);
+  		    }
+  		    else
+  		    {
+  		      document.getElementById("info").style.color = "red";
+  		      document.getElementById("info").innerHTML = "Click on a different block please!!";
+  		    }
+  		  }
+  		  
+  		  function checkWinner(type="Z", combo)
+  		  {
+  		    document.getElementById("info").innerHTML = "";
+  		    document.getElementById("info").style.color = "white";
+  		    if(combo.length>3)
+  		      {
+  		        combo.slice(1);
+  		      }
+  		      //then put in ascending order
+  		      let comboSort = [0];
+  		      
+  	
+  		  if(combo.length >= 3)
+  		  {
+  		    	for(x = 0; x < 3; x++)
+  		      {
+  		        comboSort[x] = parseInt(combo.charAt(x));
+  		      } 
+  		      comboSort.sort(function(a, b){return a - b});
+  		      combo = "";
+  		      for(x = 0; x<3; x++)
+  		      {
+  		        combo += comboSort[x];
+  		      }
+  		      
+  		      console.log("3here is: "+combo);
+  		   for( i = 0; i < 8; i++)
+  		    {
+  		      
+  		      //then validate
+  		      if(combo == arrOfWin[i] )
+  		      {
+  		        i = 100;
+  		        if(type == "X")
+  		        {
+  		          player = "1";
+  		        }
+  		        else
+  		        {
+  		          player = "2";
+  		        }
+  		        document.getElementById("info").innerHTML = "Player "+player +" won";
+  		        break;
+  		        
+  		      }
+  		      else
+  		      {
+  		        player = "draw";
+  		      }
+  		    }
+  		    if(player == "draw" && combo.length>4)
+  		    {
+  		      document.getElementById("info").innerHTML = "It seems we have ourself a draw, try again";
+  		    }
+  		  }
+  		 }
+  		</script>
+		</body>
+		</html>

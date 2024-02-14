@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN IN</title>
+<Style>
+    body{
+        background-color: grey;
+    }
+
+    .container{
+        display: flex;
+        align-items:center;
+        justify-content: center;
+    }
+    
+    .block{
+        width:80%;
+        height: 300px;
+        background-color: white;
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+    }
+    .block input{
+        width: 80%;
+        border:none;
+        border-bottom:2px solid orange;
+        min-height: 30px;
+    }
+    *
+    {
+      margin-block: 5px;
+    }
+    button{
+        width: 85%;
+        min-height: 44px;
+        background-color: orange;
+        border: none;
+        border-radius: 8px;
+        color: white;
+    }
+    span{
+        color:orange;
+       
+        width: 100%;
+    }
+    .btns {
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-block: 10px;
+    }
+    .btns button{
+        width: 80px;
+        border-radius: 8px;
+        margin-inline: 5px;
+    }
+        
+    .btns:hover{
+        background-color:grey ;
+    }
+    .block
+    {
+      padding-block: 100px;
+    }
+</Style>
+</head>
+<body>
+    <div class="container">
+        <div class="block">
+                <h3>SIGN IN</h3>
+                <Label><b>Username</b></Label>
+              
+                <input type="text" placeholder="Enter your username">
+                
+                <Label><b>Password</b></Label>
+                
+                <input type="password" placeholder="Enter your passsword ">
+                
+                
+                <input type="checkbox"><span>I agree to terms &conditions</span>
+              
+                <button class="submit">SUBMIT</button>
+
+            <span class="btns">
+                <button>Sign up</button>
+                <button>Sign in</button>
+
+            </span>
+        
+
+            
+
+        </div>
+    </div>
+    
+</body>
+</html>

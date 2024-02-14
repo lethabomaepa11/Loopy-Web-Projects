@@ -1,0 +1,135 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>
+      Tic Tac Toe - Home
+    </title>
+    <link href="/assets/css/fontawesome.css" rel="stylesheet">
+
+    <link href="/assets/css/brands.css" rel="stylesheet">
+
+    <link href="/assets/css/solid.css" rel="stylesheet">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable= no">
+		<style>
+		  body, html{
+		    top: 0;
+		    margin: 0;
+		    height: 100%;
+		    width: 100%;
+		    overflow-y: auto;
+		    overflow-x: hidden;
+		    background: linear-gradient(cyan,royalblue);
+		    color: navy;
+		  }
+		  .flex-container
+		  {
+		    display: flex;
+		    margin-top: 100px;
+		    align-items: center;
+		    justify-content: center;
+		    flex-wrap: wrap;
+		    flex-direction: column;
+		    width: 100%;
+		  }
+		  .flex-container button
+		  {
+		    border: 3px solid white;
+		    background-color: transparent;
+		    color: white;
+		    height: 150px;
+		    width: 150px;
+		    border-radius: 50%;
+		    font-size: 70px;
+		  }
+		  .modal
+		  {
+		    position: fixed;
+		    z-index: 2;
+		    background-color: white;
+		    height: 50%;
+		    border-radius: 25px;
+		    width: 90%;
+		    margin-top: 120px;
+		    display: none;
+		    align-items: center;
+		    flex-direction: column;
+		    color: black;
+		    
+		  }
+		  .modal i{
+		    font-size: 23pt;
+		  }
+		  .modal div, form
+		  {
+		    border-radius: 25px;
+		    width: 100%;
+		    display: inherit;
+		    
+		    
+		  }
+	
+		  .modal button
+		  {
+		    margin-top: 15px;
+		    border-radius: 10px;
+		    height: 65px;
+		    width: 90%;
+		    font-size: 11pt;
+		    margin: 5px;
+		    background: linear-gradient(black,navy,royalblue);
+		    font-weight: bold;
+		    }
+	
+		</style>
+  </head>
+  <header>
+    <h2>Tic Tac Toe X O</h2>
+  </header>
+  <body>
+  
+    <div class = "flex-container">
+      <div id="modal" class="modal">
+        
+        <br>
+        <i onclick="displayPlay('hide');"class="fa fa-circle-xmark" style="margin-left: 80%; color: red;"></i>
+       
+        <h2>Choose mode</h2>
+         <div>
+           <form action="#">
+        <button formaction="#">Vs random AI</button>
+        <button formaction="2playerXO.html">2 Players</button>
+        </form>
+        </div>
+      </div>
+      <div class="flex-container" style="width: 90%;
+      border-radius: 8px;">
+        <button onclick="displayPlay('show');"><i class="fa fa-play"></i></button>
+      </div>
+    </div>
+    <script>
+      function displayPlay(type = "hide")
+      {
+        const modal = document.getElementById("modal");
+        if(type == "show")
+        {
+          modal.style.display = "flex";
+        }
+        else
+        {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+    <div class="flex-container">
+      <center>
+    <button style="height: 40px; margin-bottom: 200px;width: 100px; border-radius: 8px;
+    font-size: 11pt;bottom: 0; background-color: transparent; border: 2px solid white; color: white;">How to play?</button>
+    </div>
+  </body>
+    <footer style="text-align: center; font-family: monospace;">
+      Tic Tac Toe game by Lethabo Maepa.
+      <br>
+      2023 October 23 XOXO...
+    </footer>
+</html>

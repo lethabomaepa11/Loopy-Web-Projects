@@ -1,0 +1,693 @@
+<!doctype html>
+
+
+
+<html>
+
+	<head>
+		<title>Deal Or No Deal - Play</title>
+	
+ 
+		<link href="/assets/css/fontawesome.css" rel="stylesheet">
+    <link href="/assets/css/brands.css" rel="stylesheet">
+    <link href="/assets/css/solid.css" rel="stylesheet">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable= no">
+		
+	
+		<style>
+		  body{
+
+		    top: 0;
+
+		    margin: 0;
+		    background: url("private_assets/images/Deal-Or-No-Deal.jpg");
+		    background-repeat: no-repeat;
+		    background-attachment: fixed;
+		    background-position: center;
+		    background-size: cover;
+		    color: white;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		  }
+		  html, body{
+		    height: 100%;
+		  }
+		  .amount{
+		    background: linear-gradient(black,gold);
+		    height: 45px;
+		    width: 150px;
+		    margin: 4px;
+		    margin-right: 40px;
+		    border: 1px solid black;
+		    border-radius: 8px;
+		    display: block;
+		    
+		  }
+		  .amount p{
+		    margin: 0;
+		    margin-top: 9px;
+		    text-align: center;
+		    font-weight: bold;
+		    color: white;
+		  }
+		  #dialog
+		  {
+		    position: absolute;
+		    margin-top: 40%;
+		    background-color: rgba(0,0,0,0.8);
+		    z-index: 2;
+		    width: 90%;
+		    margin-left: 5%;
+		    border-radius: 25px;
+		  }
+		  #dialog input{
+		    height: 40px;
+		    width: 70%;
+		    border: none;
+		    border-radius: 8px;
+		    outline-color: red;
+		  }
+		  .case{
+		    display: inline-block;
+		    border-radius: 50%;
+		    height: 35px;
+		    width: 35px;
+		    border: 1px solid gold;
+		    padding: 3px;
+		    font-weight: bold;
+		    margin-top: 10px;
+		  }
+		  #bankersOffer button, .noDeal{
+		    border: none;
+		    background-color: green;
+		    height: 50px;
+		    width: 40%;
+		    font-size: 20px;
+		    font-weight: bold;
+		    color: white;
+		    border-radius: 8px;
+		    margin-bottom: 5px;
+		  }
+		  #bankersOffer button.noDeal{
+		    background-color: red;
+		    
+		  }
+		  #dialog i{
+		    float: right;
+		    font-size: 30px;
+		    margin-right: 8px;
+		    margin-top: 3px;
+		  }
+		  #fDialog
+		  {
+		    position: fixed;
+		    font-size: 35px;
+		    height: 40px;
+		    width: 40px;
+		    z-index: 2;
+		    border-radius: 50%;
+		    background: linear-gradient(white,gold);
+		    border: 2px solid black;
+		    color: black;
+		    padding: 10px;
+		    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		  }
+		  header i{
+		  margin-top: 0;
+		  float: right;
+		  margin-right: 10px;
+		  font-size: 26pt;
+		  }
+		  #options 
+		  {
+		    position: fixed;
+		    margin: 0;
+		    z-index: 10;
+		    width: 100%;
+		    height: 100%;
+		    background-color: white;
+		    bottom: 0;
+		    color: black;
+		    font-size: 15pt;
+		    
+		    
+		  }
+		  #options i, #options h2
+		  {
+		    margin-top: 10px;
+		  }
+		  #close
+		  {
+		    margin-top: -10px;
+		    float: right;
+		    margin-right: 10px;
+		    font-size: 26pt;
+		  }
+		  .opt{
+		    width: 150px;
+		    height: 50px;
+		    background-color: black;
+		    border-radius: 25px;
+		    
+		  }
+		  .toggle{
+		    float: right;
+		    width: 50%;
+		    border-radius: 25px;
+		    height: 100%;
+		    background-color: lime;
+		  }
+		  #amountRemoved, #banker
+		  {
+		    font-weight: bold;
+		    font-size: 14pt;
+		    color: gold;
+		  }
+		  
+		  
+		</style>
+		<script src="script.js"></script>
+		</head>
+		<header>
+		  <i class="fa fa-gear" onclick="showOptions(true);"></i>
+		</header>
+		<body>
+		  <audio id="soundtrack" hidden="true" controls  autoplay="true" loop="true">
+		    <source src="private_assets/sounds/soundtrack.mp3">
+		  </audio>
+		  <audio id="reactionAudio" hidden="true" controls>
+		    <source src="private_assets/sounds/chanting.wav"> </audio>
+		  <audio id="clickSound" hidden="true" controls>
+       
+		    <source src="private_assets/sounds/click_effect6.mp3">
+		    
+		    </audio>
+		    
+		  <center>
+		    <div id="options" style="display: none;">
+		      <i onclick="showOptions(false);"id="close" class="fa fa-circle-xmark"></i>
+		      <h2>Settings <i class="fa fa-gear"></i></h2>
+		      <br>
+		      
+		      <h4>Soundtrack:</h4> <div onclick="stateChange('sound');"id="sound"class="opt">
+		        <div id="sound1" class="toggle"><p id="soundState" style="display: none;">off</p>
+		        </div><br>
+		        
+		      </div><br>
+		      Volume: <input id="volumeSound" onchange="volumeChange('sound');" type="range"><br><br><br>
+		      <h4>Click/tap sounds:</h4>
+		      <div onclick="stateChange('click');"id="click" class="opt">
+		       <div id="click1" class="toggle">
+		         <p id="clickState" style="display: none;">on</p>
+		       </div>
+		       
+		       </div><br>
+		       Volume: <input id="volumeClick" onchange="volumeChange('click');" type="range"><br>
+		    </div>
+		    <div draggable="true"id="fDialog" style="display: none;" onclick="document.getElementById('dialog').style.display = 'block';
+		    document.getElementById('fDialog').style.display = 'none'">
+		      <i class="fa fa-gamepad"></i>
+		    </div>
+		    
+		  <div id="dialog" >
+		    <i class="fa fa-circle-xmark" onclick="document.getElementById('fDialog').style.display = 'block';
+		    document.getElementById('dialog').style.display = 'none'"></i>
+		    <div id="intro">
+		      <!-- first dialog box -->
+		      <h2>Welcome</h2><a style="color: white; "href="homepage.html">Quit Game</a>
+		      
+		      <p>In this game, you are given 26 cases, you will choose one box at start then through the game the number of cases you must remove will decrease, initially, at round 1 you need to remove 5 cases... The goal is to remove low amounts of money and hopefully walk away with a lot of money</p>
+		      <p>You can click the x-mark button to hide this box to view Available amounts</p>
+		      
+		      <!--<p>Now enter your name and choose your case</p>
+		     
+		      
+		      <input type="text" placeholder="Enter your name"><br><br>--->
+		 
+		       
+		    </div>
+		    <div id="chooseCase" style="display: none">
+		      <h2 id="round"></h2>
+		      <p id="remCases"></p>
+		      <p id="amountRemoved"></p>
+		    </div>
+		    <div id="next" style="display: none;">
+		      <h3>Continue</h3>
+		      <div id="next1">
+		      <p>You have chosen a case and if you reach round 10, you will need to choose between your case and the remaining one</p>
+		      <button class="noDeal" onclick="chosenCase(0)" id="nextbtn">Next</button>
+		      </div>
+		      <div id="next2" style="display: none;">
+		        <p>For every case your choose to remove, the corresponding amount/the amount which was in the case will also be removed "will no longer be displayed in the <b>Available Amounts</b></p>
+		        <button class="noDeal" style="display: none;" id="btnNext">Play</button>
+		      </div>
+		      
+		      
+		      
+		    </div>
+		    <div id="bankersOffer" style="display: none">
+		      <h2>Banker's offer</h2>
+		      <p>Well done on your round</p>
+		      <br><p>The banker is offering you <p id="banker"></p><br>So, is this a deal?<br>Are you going to sell your case to the banker, Deal to sell, No deal to reject and continue playing</p>
+		      <button onclick="chosenCase(-100)">Deal</button>
+		      <button onclick="chosenCase(0)"class="noDeal">No Deal</button>
+		      <br><br>
+		    </div>
+		    <div id="result" style="display: none">
+		      <h2>Well done!!</h2>
+
+		      <p>.</p>
+
+		      <br><p>You walk away with<p id="resultAmount"></p>today, Enjoy your day!!</p>
+		    </div>
+		         <div id="Cases">
+
+		       <h3>Available Cases:</h3>
+
+		       <div onclick="chosenCase(1);"class="case"id="case1"></div>
+      		<div onclick="chosenCase(2);"class="case"id="case2"></div>
+		      <div onclick="chosenCase(3);"  class="case"id="case3"></div>
+		      <div onclick="chosenCase(4);" class="case"id="case4"></div>
+		      <div onclick="chosenCase(5);" class="case"id="case5"></div>
+		      <div  onclick="chosenCase(6);" class="case"id="case6"></div>
+		      <div onclick="chosenCase(7);"  class="case"id="case7"></div>
+		      <div onclick="chosenCase(8);" class="case"id="case8"></div>
+		      <div onclick="chosenCase(9);" class="case"id="case9"></div>
+		      <div onclick="chosenCase(10);" class="case"id="case10"></div>
+		      <div onclick="chosenCase(11);" class="case"id="case11"></div>
+		      <div onclick="chosenCase(12);" class="case"id="case12"></div>
+		      <div onclick="chosenCase(13);" class="case"id="case13"></div>
+		      <div onclick="chosenCase(14);" class="case"id="case14"></div>
+      		<div onclick="chosenCase(15);" class="case"id="case15"></div>
+		      <div  onclick="chosenCase(16);" class="case"id="case16"></div>
+		      <div onclick="chosenCase(17);" class="case"id="case17"></div>
+		      <div onclick="chosenCase(18);" class="case"id="case18"></div>
+		      <div  onclick="chosenCase(19);" class="case"id="case19"></div>
+		      <div onclick="chosenCase(20);"  class="case"id="case20"></div>
+		      <div onclick="chosenCase(21);" class="case"id="case21"></div>
+		      <div onclick="chosenCase(22);" class="case"id="case22"></div>
+		      <div onclick="chosenCase(23);" class="case"id="case23"></div>
+		      <div onclick="chosenCase(24);" class="case"id="case24"></div>
+		      <div onclick="chosenCase(25);" class="case"id="case25"></div>
+		      <div onclick="chosenCase(26);" class="case"id="case26"></div>
+		    </div>
+		  </div>
+		  
+		  <h2>Available Amounts:</h2>
+		  <table>
+		  <td>
+		  <div class="amount"><p id="1"></p></div>
+		  <div class="amount"><p id="2"></p></div>
+		  <div  class="amount"><p id="3"></p></div>
+		  <div class="amount"><p id="4"></p></div>
+		  <div class="amount"><p id="5"></p></div>
+		  <div  class="amount"><p id="6"></p></div>
+		  <div  class="amount"><p id="7"></p></div>
+		  <div class="amount"><p id="8"></p></div>
+		  <div class="amount"><p id="9"></p></div>
+		  <div class="amount"><p id="10"></p></div>
+		  <div class="amount"><p id="11"></p></div>
+		  <div class="amount"><p id="12"></p></div>
+		  <div class="amount"><p id="13"></p></div>
+		  </td>
+		  
+		  <td>
+		  <div class="amount"><p id="14"></p></div>
+		  <div class="amount"><p id="15"></p></div>
+		  <div class="amount"><p id="16"></p></div>
+		  <div class="amount"><p id="17"></p></div>
+		  <div class="amount"><p id="18"></p></div>
+		  <div class="amount"><p id="19"></p></div>
+		  <div class="amount"><p id="20"></p></div>
+		  <div class="amount"><p id="21"></p></div>
+		  <div class="amount"><p id="22"></p></div>
+		  <div class="amount"><p id="23"></p></div>
+		  <div class="amount"><p id="24"></p></div>
+		  <div class="amount"><p id="25"></p></div>
+		  <div class="amount"><p id="26"></p></div>
+		  </td>
+		</table>
+		</center>
+		<script>
+      //populate the diplayed cases with amounts in ascending order
+      //shuffle the amounts and place in cases hidden action
+      //show a dialog box asking user to choose a box, Available boxes
+      //display the amount that was in the box and remove the amount from the ones displayed
+      //global variables
+      const arrCases = [1,5,10,50,100,200,300,500,800,1000,1500,3000,5000,7000,9000,15000,30000,90000,150000,200000,250000,500000,750000,1000000,1500000,2000000];
+      let round = 0;//initially its round zero when user has to choose their box then increment round to one
+      let arrCasesTemp = new Array();
+      let totCases = 26;
+      let removeCasesTemp = 6;
+      let removeCases = 6;//needs to remove 6 cases at first
+      let userCase = 0;//the case the user chose
+		  // Function to shuffle the array content
+		  let click = true;//global variable cos of 2 functions involved
+		  var banker = 0;
+		  const soundtrack = document.getElementById('soundtrack');
+
+    function volumeChange(type = null)
+    {
+      let soundVolume = document.getElementById("volumeSound").value;
+      let clickVolume = document.getElementById("volumeClick").value;
+      
+      soundVolume = (parseInt(soundVolume)/100).toString();
+      clickVolume = (parseInt(clickVolume)/100).toString();
+      if(type == "sound")
+      {
+        soundtrack.volume = soundVolume;
+      }
+      else{
+        clickSound.volume = clickVolume;
+      }
+    }
+    function stateChange(type = null)
+    {
+      let objectId = type + "1";
+      console.log(objectId);
+      let object1 = document.getElementById(objectId);
+      let currentSoundState = document.getElementById("soundState").textContent;   
+      let currentClickState = document.getElementById("clickState").innerHTML;
+      if(type == "sound")
+      {
+        console.log(currentSoundState);
+        if(currentSoundState == "on")
+        {
+          currentSoundState = "off";
+          document.getElementById("soundState").innerHTML = "off";
+          object1.style.backgroundColor = "red";
+          object1.style.float = "left";
+          console.log(currentSoundState);
+          toggleOptions("sound",false);
+        }
+        else{
+          currentSoundState = "on";
+          document.getElementById("soundState").innerHTML = "on";
+          object1.style.backgroundColor = "lime";
+          object1.style.float = "right";
+          toggleOptions("sound",true);
+        }
+      }
+      else if(type == "click")
+      {
+        if(currentClickState == "on")
+        {
+          toggleOptions("click",false);
+           currentClickState = "off";
+
+          document.getElementById("clickState").innerHTML = "off";
+
+          object1.style.backgroundColor = "red";
+          object1.style.float = "left";
+          
+        }
+        else{
+          toggleOptions("click",true);
+            currentClickState = "on";
+
+          document.getElementById("clickState").innerHTML = "on";
+
+          object1.style.backgroundColor = "lime";
+          object1.style.float = "right";
+        }
+      }
+    }
+      stateChange("sound");//initially playing
+    function toggleOptions(type = "sound", allowed = true)
+    {
+      
+      if(type == "sound" && allowed == true)//if sound is allowed to play
+      {
+        
+        soundtrack.play();
+      }
+      else if(type == "click" && allowed == true)
+      {
+        click = true;
+      }
+      else if(type == "click" && !allowed )
+      {
+        click = false;
+      }
+      else
+      {
+        
+        soundtrack.pause();
+      }
+      
+    }
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+ 
+            // Generate random number 
+            var j = Math.floor(Math.random() * (i + 1));
+ 
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+ 
+        return array;
+    }
+		  function populateCases()
+		  {
+		
+		    
+		    
+		    for(x = 0; x < 26; x++)
+		    {
+		      let y = x +1;
+		      let id = y.toString();
+		      let caseId = "case"+id;
+		      arrCasesTemp[x] = arrCases[x];
+		      let content = "R "+arrCases[x].toString();
+		      document.getElementById(caseId).textContent = y;
+		      document.getElementById(id).textContent = content;
+		      
+		    }
+		    //shuffle the template array
+		    shuffleArray(arrCasesTemp);
+		  }
+		  
+		  populateCases();
+		  
+		  function bankersOffer(gameElement)
+		  {
+		    
+          round++;
+		      totCases = totCases - removeCasesTemp;
+
+		        for(i = 0; i < totCases; i++ )
+		        {
+		          banker += arrCasesTemp[i];
+		          
+		        }
+		        banker = Math.floor(Math.sqrt((banker*banker)/totCases));
+		        //display bankers offer
+		        gameElement.style.display = "none";
+		        document.getElementById("bankersOffer").style.display = "inline-block";
+		        document.getElementById("banker").textContent = "R "+banker;
+		  }
+		  function chosenCase(idNum = 0)
+		  {
+		    let amountRemoved = arrCasesTemp[idNum-1];
+		    if(click)
+		    {
+		      const clickSound = document.getElementById("clickSound");
+		      clickSound.play();
+		      const reactionSound = document.getElementById("reactionAudio");
+		      
+		      if(round != 0 && amountRemoved>800000)
+		      {
+		        reactionSound.setAttribute('src', 'private_assets/sounds/disappointed-crowd.mp3');
+		        reactionSound.play();
+		      }
+		      else if(round != 0 && amountRemoved > 400000 && round != 10)
+		      {
+		        reactionSound.setAttribute('src', 'private_assets/sounds/audience-disappointed2.mp3');
+
+		        reactionSound.play();
+		      }
+		      else if(round != 0 && amountRemoved > 50000 && round != 10)
+		      {
+		        reactionSound.setAttribute('src', 'private_assets/sounds/clapping2.wav');
+
+		        reactionSound.play();
+		      }
+		      else if(round!= 0 && amountRemoved > 15000 && round != 10)
+		      {
+		        reactionSound.setAttribute('src', 'private_assets/sounds/clapping1.wav');
+
+		        reactionSound.play();
+		      }
+		      else if(round != 0 && amountRemoved>1000 && round != 10)
+		      {
+		        reactionSound.setAttribute('src', 'private_assets/sounds/chanting.wav');
+
+		        reactionSound.play();
+		      }
+		      else if(round != 0 && amountRemoved > 0 && round != 10){
+		        reactionSound.setAttribute('src', 'private_assets/sounds/cheering.wav');
+		        reactionSound.play();
+		      }
+		      
+		    }
+
+    		let casesBox = document.getElementById("Cases");
+    		let gameElement = document.getElementById("chooseCase");
+		    if(idNum > 0)
+		    {
+    		    document.getElementById("round").textContent = "Round "+round;
+    		    
+    		    let strId = "case"+idNum;
+    		    
+    		    let element = document.getElementById(strId);
+    		    
+    		    
+    		    
+    		    let index = arrCases.indexOf(amountRemoved);
+    		    
+    		    index += 1;
+    		    
+    		    let ele = index.toString();
+    		    if(round != 0 && round != 10)
+    		    {
+    		      document.getElementById(ele).style.display = "none";
+    		      casesBox.style.display = "inline-block";
+    		    }
+    		    
+    		    
+    		    if(round == 0)
+    		    {
+    		      
+    		      userCase = strId;
+    		      element.style.display = 'none';
+    		      document.getElementById("intro").style.display = "none";
+    		      document.getElementById('next').style.display = "inline-block";
+    		      casesBox.style.display = "none";
+    		      
+    		    }
+    		    else if(round <= 5)
+    		    {
+    		      casesBox.style.display = "inline-block";
+    		      --removeCases;
+    		      gameElement.style.display = "inline-block";
+    		      document.getElementById('amountRemoved').textContent = "You removed: R "+amountRemoved;
+    		      element.style.display = 'none';
+    		      document.getElementById("bankersOffer").style.display = "none";
+    		      
+    		      if(removeCases == 0)
+    		      {
+    		        
+    		        //here
+    		        bankersOffer(gameElement);
+    		        removeCasesTemp -= 1;
+    		        removeCases = removeCasesTemp;
+    		        
+    		        casesBox.style.display = "none";
+   
+    		      }
+    		    
+    		      
+    		    }
+    		    else if(round >=  6 && round < 10)
+    		    {
+    		      //--removeCases;
+    		      
+    		      gameElement.style.display = "inline-block";
+    		      document.getElementById('amountRemoved').textContent = "Amount Removed: R "+ amountRemoved;
+    		      element.style.display = 'none';
+    		      document.getElementById("bankersOffer").style.display = "none";
+    		      if(removeCases == 0)
+    		      {
+    		        
+    		        removeCases = 1;
+    		        
+    		      }
+    		      
+    		      
+    		      casesBox.style.display = "none";
+    		      bankersOffer(gameElement);
+    		    }
+    		    else if(round == 10)
+    		    {
+    		      
+    		      chosenCase(-1);
+    		    }
+    		    if(round != 10)
+    		    {
+    		      
+    		    document.getElementById("remCases").textContent = "Remove "+removeCases +" case(s)";
+    		    }
+		    }
+		    else if(idNum == -1)
+		    {
+		      //nothing;
+		      
+		      document.getElementById("nextbtn").onclick = chosenCase(-2);
+		      document.getElementById("round").textContent = "Round "+round;
+		      if(round == 10)
+		      {
+		        document.getElementById(userCase).style.display = 'inline-block';
+
+    		      document.getElementById("remCases").textContent = "Choose between your "+userCase+" and the remaining case";
+		      }
+		      
+		        
+		        
+		    }
+		    else if(idNum == -2)
+		    {
+		      console.log("im hete");
+		      gameElement.style.display = "none";
+		      document.getElementById("next").style.display = "inline-block";
+		      document.getElementById("next1").style.display = "none";
+		      document.getElementById("next2").style.display = "inline-block";
+		      //switch buttons
+		      document.getElementById("nextbtn").style.display = "none";
+		      document.getElementById("btnNext").style.display = "inline-block";
+		      
+		     document.getElementById("btnNext").onclick = chosenCase(-3);
+		      
+		    }
+		    else if(idNum == -3)
+		    {
+		      
+		      //document.getElementById("nextbtn1").onclick = chosenCase(0);
+		      console.log("yoh");
+		      document.getElementById("next").style.display = "none";
+		      gameElement.style.display = "inline-block";
+		      casesBox.style.display = "inline-block";
+		    }
+		    else if(idNum == -100)
+		    {
+		      showResult(banker);
+		    }
+		    else
+		    {
+		      if(round == 0)
+		      {
+		        round++;
+		      }
+		      chosenCase(-1);//calls itself one time
+		    if(round > 1)
+		     {
+		     gameElement.style.display = "inline-block";
+		      casesBox.style.display = "inline-block";
+		      document.getElementById("bankersOffer").style.display = "none";
+		     }
+		     
+		      document.getElementById('next').style.display = "none";
+		    }
+		  }
+		  
+		  function showResult(banker = 0)
+		  {
+		    //display the result dialog box
+		    document.getElementById("result").style.display = "inline-block";
+		    document.getElementById("bankersOffer").style.display = "none";
+		    document.getElementById("resultAmount").textContent = "R "+banker;
+		  }
+		  </script>
+		</body>
+		</html>
