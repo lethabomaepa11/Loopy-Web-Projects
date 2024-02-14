@@ -1,6 +1,6 @@
 <?php
 
-//session_start(); -- conflict
+session_start(); //-- conflicting errors
 $connect = new mysqli("localhost","root","","LoopyLite");
 
 if($connect->connect_error)
