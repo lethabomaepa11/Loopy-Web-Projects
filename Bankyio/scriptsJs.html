@@ -1,0 +1,10 @@
+
+let Rand = Intl.NumberFormat('en-ZA', {
+    style: 'currency',
+    currency: 'ZAR',
+});
+
+function setCurrency(id)
+{
+  document.getElementById(id).textContent = Rand.format(parseFloat(document.getElementById(id).textContent))
+}

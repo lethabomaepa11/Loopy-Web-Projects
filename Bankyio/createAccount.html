@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/css/fontawesome.css" rel="stylesheet">
+    <link href="assets/css/brands.css" rel="stylesheet">
+    <link href="assets/css/solid.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js"></script>
+  <title>Public Bank - Create </title>
+  <style>
+    /*.password{
+      width: 40%;
+    }
+    .back{
+      background-color: yellow;
+    }*/
+    .error
+    {
+      padding: 2px;
+      transition: height 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container" style="display: block; top: 0;">
+    <div class="trysimple">
+      <i onclick="history.back();"class="fa fa-arrow-left float-left" style="color: #ba0909;"><p>Quit</p></i><br><br>
+      <div class="login">
+        
+        <form action="javascript:void(0)">
+          <span style="font-size: 12px">Sign in using</span><a href="../LoopyLite/login.php?app=Bankyio" class="btn">LoopyLite</a>
+          <div id="bio">
+          <h4>Biographical information</h4>
+          <div style="display: none;" id="divError" class="error">
+            <h5 id="error"></h5>
+          </div>
+          <p>Full name</p>
+          <input id="name" name="name" type="text" tabindex="1"required>
+          <p>Date of Birth</p>
+          <input tabindex="3" id="dateOfBirth" name="DateOfBirth" type="date" required>
+          <p>Phone number</p>
+          <input tabindex="4"id="phoneNumber" name="phoneNumber" type="number" required>
+          <center>
+          <button tabindex="5"onclick="nextEntry('next')">Next</button>
+          </div>
+          <div style="display: none;" id="passwords">
+            <h4>Password</h4>
+            <h5 style="color: black;">You will use this password and your phone number to login</h5>
+            <div style="display: none"id="divErrorP" class="error">
+              <h5 id="errorP"></h5>
+            </div>
+            <p>Create password:</p>
+            <input tabindex="5"onchange="validatePassword();"id="1stpassword" name="password" type="password" required>
+            <p>Confirm password:</p>
+            <input tabindex="6"onchange="checkSame();" id="2ndpassword" type="password" required>
+            <button style="background-color: white; border: 2px solid navy; color: navy; width: 40%;"class="back" onclick="nextEntry('back')">Back</button>
+            <button tabindex="7"style="width: 42%; display: none;" formmethod="Post" formaction="php/createAcc.php" id="submit">Submit</button>
+          </div>
+          </center>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    function nextEntry(type)
+    {
+      const name = document.getElementById("name").value;
+      const dateOfBirth = document.getElementById("dateOfBirth").value;
+      const phoneNumber = document.getElementById("phoneNumber").value;
+      if(type == "next" && name.length > 0 && dateOfBirth.length > 0 && phoneNumber.length>9)
+      {
+        document.getElementById("divError").style.display = "none";
+        document.getElementById("bio").style.display = "none";
+        document.getElementById("passwords").style.display = "block";
+      }
+      else
+      {
+        const error = document.getElementById("error");
+        document.getElementById("error").style.color = "#6f2d2d";
+        if(phoneNumber.length<=9)
+        {
+          document.getElementById("divError").style.display = "inline-block";
+          document.getElementById("divError").style.height = "50px";
+          error.innerHTML = "<i class='fa fa-circle-xmark'></i> Enter valid phone number";
+          setTimeout(function()
+          {
+            document.getElementById("divError").style.height = "0px";
+            //document.getElementById("divError").style.display = "none";
+            error.innerHTML = "";
+            setTimeout(function()
+          {
+            document.getElementById("divError").style.display = "none";
+          },1000);
+          },3000);
+        }
+        document.getElementById("bio").style.display = "block";
+        document.getElementById("passwords").style.display = "none";
+      }
+    }
+    function validatePassword()
+    {
+      const element = document.getElementById("1stpassword");
+      
+      if((element.value).length < 5)
+      {
+        document.getElementById("divErrorP").style.display = "block";
+        document.getElementById("errorP").style.color = "#6f2d2d";
+        document.getElementById("divErrorP").style.backgroundColor = "#f28080";
+        document.getElementById("errorP").innerHTML = "Password must have more than 4 characters...";
+      }
+      else
+      {
+        document.getElementById("errorP").style.color = "#086608";
+        document.getElementById("divErrorP").style.backgroundColor = "#88f088";
+        
+        document.getElementById("errorP").innerHTML = "Password is strong";
+        setTimeout(checkSame,500);
+      }
+    }
+    function checkSame()
+    {
+      const password1 = document.getElementById("1stpassword").value;
+      const password2 = document.getElementById("2ndpassword").value;
+      
+      if(password1 != password2)
+      {
+        document.getElementById("divErrorP").style.display = "block";
+        document.getElementById("divErrorP").style.backgroundColor = "#f28080";
+        document.getElementById("errorP").style.color = "#6f2d2d";
+        document.getElementById("errorP").innerHTML = "Passwords don't match, please confirm password.<br>Submit button will appear when the passwords match";
+        document.getElementById("submit").style.display = "none";
+      }
+      else
+      {
+        document.getElementById("errorP").style.color = "white";
+        document.getElementById("divErrorP").style.backgroundColor = "#88f088";
+        document.getElementById("errorP").innerHTML = "Passwords match."
+        document.getElementById("submit").style.display = "inline-block";
+      }
+    }
+    //setInterval(validatePassword(),1000);
+  </script>
+</body>
+</html>

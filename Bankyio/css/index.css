@@ -1,0 +1,858 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+body, html{
+  height: 100%;
+  width: 100%;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Varela Round', sans-serif;
+  padding: 0;
+  margin: 0
+}
+button
+{
+  
+}
+body
+{
+  background-color: white;
+  color: black;
+}
+.header, header
+{
+  left: 0;
+  height: 60px;
+  top: 0;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+  color: #1c0357;
+  border-bottom: 2px solid #ddd;
+}
+
+.header img, img.logo
+{
+  height: 60px;
+  width: 60px;
+}
+/* add a media for mobile to display the menu button */
+.header i, .float-right, .float-left
+{
+  display: inline-block;
+  float: left;
+  margin: 20px;
+  margin-top: 6px;
+  font-size: 20pt;
+  padding: 10px;
+  border-radius: 25px;
+}
+.float-left, .float-right
+{
+  margin: 0;
+  padding: 0;
+  margin-top: 6px;
+}
+.float-left
+{
+  margin-left: 10px;
+}
+.float-right
+{
+  float: right;
+  margin-right: 30px;
+}
+@keyframes menuAppear
+{
+  from
+  {
+    transform: translateX(-100%);
+  }
+  to
+  {
+    transform: translateX(0);
+  }
+}
+@keyframes menuClose
+{
+  from{
+    transform: translateX(0);
+  }
+  to{
+    transform: translateX(-100%);
+  }
+}
+
+.menu
+{
+  display: none;
+  width: 80%;
+  height: 100%;
+  left: 0;
+  background-color: #6028e5;
+  position: fixed;
+  color: white;
+  z-index: 5;
+  top: 0;
+}
+.menu ul
+{
+  left: 0;
+  width: 100%;
+  margin-left: -20px;
+  margin-top: 50px;
+}
+.menu ul li
+{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  height: 26px;
+  width: 60%;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  font-size: 15pt;
+  transition: 0.4s ease-in-out all;
+}
+.menu ul li:hover
+{
+  background-color:#6028e5;
+  border-radius: 8px;
+}
+.menu p
+{
+  margin-top: 100%;
+}
+.menu i
+{
+  display: inline;
+}
+.first
+{
+  margin: 0;
+  margin-top: 62px;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  width: 100%;
+  color: black;
+  text-align: center;
+  padding-bottom: 5px;
+}
+.first img{
+  margin-top: 10px;
+  height: 300px;
+  width: 96%;
+  border-radius: 4px;
+  border: 2px solid #1c0357;
+}
+.first a
+{
+  color:#6028e5;
+}
+.first h2
+{
+  color: #6028e5;
+}
+.second
+{
+  margin-top: 0px;
+}
+@keyframes loginAppear
+{
+  from{
+    transform: translateX(-100%);
+  },
+  to{
+    transform: translateX(0px);
+  }
+}
+.login-container
+{
+  background-color: #1c0357;
+  position: fixed;
+  width: 100%;
+  left:0;
+  z-index: 3;
+  height: 100%;
+  overflow-y: auto;
+  animation: loginAppear 0.5s ease-in-out;
+}
+.trysimple
+{
+  height: 490px;
+  border-radius: 0px 0px 150px 0px;
+  background-color: white;
+  top: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.anotherCool
+{
+  display: none;
+  height: 50px;
+  background-color: white;
+  width: 10%;
+  border-radius: 0px 0px 80% 0;
+}
+.login
+{
+  margin-left: 1%;
+  width: 98%;
+  border-radius: 8px;
+  color: #1c0357;
+  height: 50%;
+
+}
+.login a{
+  color: #6028e5;
+}
+.login input
+{
+  display: block;
+  border: none;
+  border-radius: 8px;
+  height: 50px;
+  background-color: #ddd;
+  width: 90%;
+  font-size: 12pt;
+  margin: 20px;
+  outline-color: red;
+  color: black;
+  font-weight: bold;
+}
+.login p, .absolute
+{
+  position: absolute;
+  font-weight: bold;
+  margin-left: 26px;
+  margin-top: 1px;
+  font-size: 10pt;
+  
+}
+
+.login button, .amounts button, button, .btn
+{
+  text-decoration: none;
+  margin: 10px;
+  height: 50px;
+  border: none;
+  background-color: #6028e5 ;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  width: 70%;
+  font-size: 11pt;
+  transition: 0.3s all ease-in-out;
+}
+.btn
+{
+  height: auto;
+  width: fit-content;
+  background-color: #fff;
+  border: 2px solid #6028e5 ;
+  padding: 5px;
+}
+
+.login input:focus
+{
+  box-shadow: 0 8px 25px steelblue;
+}
+.login button:hover, button:hover
+{
+  transform: translateY(-5px);
+  box-shadow: 0 8px 10px #6028e5;
+}
+footer
+{
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  left: 0;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+footer button
+{
+  background-color: #6028e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  height: 40px;
+  width: 40%;
+  padding: 5px;
+  margin: 2px;
+  font-size: 11pt;
+  font-weight: bold;
+}
+footer .btnLogin
+{
+  background-color: white;
+  border: 2px solid #6028e5;
+  color: #6028e5;
+}
+
+.error
+{
+  background-color: #f28080;
+  color: #6f2d2d;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  border-left: 3px solid #6f2d2d ;
+}
+
+
+
+/* for bank homepage */
+footer div
+{
+  background-color: #fff;
+      margin: 0;
+      padding: 0;
+      height: 56px;
+      border: none;
+      border-top: 1px solid #ddd;
+      bottom: 0;
+      display: grid;
+      align-items: center;
+      width: 100%;
+      grid-template-columns: repeat(5,1fr);
+  }
+ footer a, footer i
+    {
+      aspect-ratio: 64/32;
+      padding: 4px;
+      justify-self: center;
+      align-self: center;
+    }
+    footer i
+    {
+      color: #1f1f1f;
+      font-size: 24px;
+      font-family: 'Varela Round', sans-serif;
+    }
+footer i.active,footer i:active
+{
+   color: red;
+}
+i.iCenter
+{
+  font-size: 44px;
+  color: #6028e5;
+  border-radius: 50%;
+  text-align: center;
+}
+footer i p, i p{
+  font-family: 'Varela Round', sans-serif;
+  font-size: 8pt;
+  margin: 0;
+}
+footer i.iCenter p{
+  padding: -10px;
+}
+.container-containers
+{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow-y: auto;
+}
+
+
+.right{
+  margin-right: 0px;
+}
+.balances
+{
+  height: 150px;
+  width: 94%;
+  background: linear-gradient(#6028e5,steelblue);
+  border-radius: 8px;
+  
+  padding: 5px;
+  color: white;
+  overflow: hidden;
+  /*box-shadow: 0 10px 23px rgba(0,0,0,0.5);*/
+}
+.balances h2
+{
+  position: relative;
+  margin-top: 35px;
+  /*margin-left: 20%;*/
+  color: white;
+}
+.balances h5, .betBalance h5
+{
+  color: gold;
+  margin-top: 100px;
+}
+.balances p, .betBalance p
+{
+  margin-top: 30px;
+  font-size: 10pt;
+}
+.tabs,.container-containers a
+{
+  padding: 10px;
+  margin-top: 15px;
+  margin-right: 2%;
+  color: white;
+  width: 42%;
+  border-radius: 8px;
+  background-color: #6028e5;
+  height: 120px;
+  overflow: hidden;
+ /* box-shadow: 0 5px 8px rgba(0,0,0,0.2);*/
+  transition:0.5s ease-in-out all;
+}
+.tabs p, p
+{
+  font-size: 10pt;
+}
+.tabs:hover
+{
+  color: gold;
+  background-color: #6028e5;
+  transform: translateY(-5px);
+}
+.tabs:active
+{
+  box-shadow: none;
+}
+.tab-full
+{
+  
+  width: 90%;
+}
+@keyframes appearFromBottom
+{
+  from{
+    transform: translateY(100%);
+  }
+  to
+  {
+    transform: translateY(0);
+  }
+}
+@keyframes goToBottom
+{
+  to{
+    transform: translateY(100%);
+  }
+}
+.new-close
+{
+  margin-inline: 45%;
+  margin-top: 4px;
+  background-color: #ddd;
+  border-radius: 8px;
+  width: 13%;
+  height: 5px;
+}
+.more
+{
+  position: fixed;
+  bottom: 0;
+  
+  width: 100%;
+  z-index: 8;
+  background-color: #fff;
+  border-radius: 25px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  display: none;
+  padding-bottom: 10px;
+}
+.more ul li
+{
+  display: block;
+  padding-block: 5px;
+}
+.more ul li:hover, .more ul li:active
+{
+  text-decoration: underline;
+}
+.comingSoon
+{
+  color: #ddd;
+}
+.more-tab
+{
+  padding: 5px;
+  margin-block: 1px;
+}
+/* Lottery */
+.allBets
+{
+  position: fixed;
+  z-index: 5;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #6028e5,steelblue);
+  color: white;
+  display: block;
+  padding-inline: 2%;
+  overflow-y: auto;
+  padding-bottom: 20px;
+  transition: all ease-in-out 0.5s;
+}
+#noBet
+{
+  color: red;
+}
+.bet-container
+{
+  background:#fff;
+  padding: 2%;
+  border-radius: 8px;
+  box-shadow: 0 11px 28px rgba(0,0,0,0.4);
+  width: 90%;
+  color: black;
+  transition: all ease-in-out 0.5s;
+}
+.num
+{
+  border-radius: 8px;
+  height: 35px;
+  width: 40px;
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  outline-color: #6028e5;
+  background-color: #ddd;
+  /*box-shadow: 8px 0 10px 0 rgba(0,0,0,0.5);*/
+}
+#math-upS
+{
+  font-size: 20px;
+}
+.amounts
+{
+  border-top: 2px solid #6028e5;
+  padding-top: 10px;
+  font-size: 20px;
+}
+.amounts input
+{
+  height: 30px;
+  font-size: 20px;
+  width: 100px;
+  border-radius: 8px;
+  outline-color: #6028e5;
+  padding-inline: 5px;
+  border: none;
+  background-color: #ddd;
+}
+.amounts button
+{
+  margin-left: 15%;
+}
+#estimatedReturn
+{
+  color: #0ab40a;
+}
+.lottoR p
+{
+  margin-top: 5px;
+  margin-inline: 3px;
+  display: inline;
+  border-radius: 25px;
+  padding: 15px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+}
+.lottoR p.user
+{
+  background-image: linear-gradient(to right,steelblue,#6028e5);
+}
+.lottoR button
+{
+  margin-top: 50px;
+}
+#lottoReturn
+{
+  font-size: 11pt;
+}
+@keyframes moveToRightAndBack{
+  25%
+  {
+    transform: translateX(-50px);
+  }
+  50%
+  {
+    transform: translateX(-100px);
+    transform: rotate(180deg);
+  }
+  75%
+  {
+    transform: translateX(-50px);
+    transform: rotate(-90deg);
+  }
+  
+}
+#dice
+{
+  animation: moveToRightAndBack 6s ease-in-out infinite forwards;
+}
+#estimatedReturn
+{
+  font-size: 13pt;
+  padding: 5px;
+  background-color: #0a6d19;
+  border-radius: 4px;
+}
+.track-tab
+{
+  border-radius: 8px;
+  min-height: 50px;
+  max-height: 70px;
+  overflow: hidden;
+  width: 99%;
+  background-color: white;
+  margin-block: 1px;
+  margin-inline: 0px;
+  color: black;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr;
+  transition: 0.4s all ease-in-out;
+}
+.track-tab:hover
+{
+  background-color: #ddd;
+  color: #6028e5;
+}
+
+.balances div
+{ 
+  box-shadow: none;
+}
+.add
+{
+  margin-top: 5px;
+}
+.add button, h5
+{
+  display: inline;
+  width: 50px;
+  margin: 0px;
+}
+.add button
+{
+  background-color: #6028e5;
+}
+.transactLottery
+{
+  position: fixed;
+  overflow-y: auto;
+  padding-block: 20px;
+  padding-inline: 5px;
+  background-color: #fff;
+  z-index: 6;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 8px;
+  color: black;
+  display: none;
+}
+.transactLottery div, .hist
+{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 3px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.transactLottery h4
+{
+  color: #6028e5;
+}
+.transactLottery .hist h4
+{
+  color: white;
+}
+.transactLottery #lotteryBal, #mainBal
+{
+  color: #6028e5;
+  font-weight: bold;
+  font-size: 13pt;
+  margin-top: -10px;
+}
+.transactLottery input
+{
+  border-radius: 8px;
+  height: 50px;
+  width: 50%;
+  border: none;
+  background-color: #d3c0fb;
+  font-size: 14pt;
+  font-family: Varela, Arial;
+  outline: none;
+  color: black;
+  padding-inline: 10px;
+}
+#infoRecharge, #infoTransfer
+{
+  font-size: 9pt;
+  color: blue;
+}
+#history
+{
+  display: none;
+  animation: menuAppear 0.5s ease-in-out;
+}
+fieldset
+{
+  border-radius: 8px;
+  border: none;
+  background-color: #eee;
+}
+legend
+{
+  font-weight: bold;
+  color: #6028e5;
+}
+
+/* stocks*/
+   .stocksPage, .myStock-page,.stockHistory-page
+   {
+     background-color: #eee;
+     top: 0;
+     left: 0;
+     width: 100%;
+     overflow-y: auto;
+   }
+   .stocksHeader
+   {
+     position: fixed;
+     width: 100%;
+     height: 40px;
+     background-color: #fff;
+     color: #1c0357;
+     padding: 8px;
+     box-shadow: 0 3px 2px rgba(0,0,0,0.2);
+   }
+   .stockTab button
+   {
+     width: 100px;
+     margin-top: 25px;
+     background-color: #6028e5 ;
+     color: #fff;
+   }
+   .stockTab
+   {
+     background-color: #fff;
+     margin-block: 0;
+     padding: 2px;
+     border-radius: 2px;
+     border-bottom: 1px solid #aaa;
+     width: 99%;
+     height: 100px;
+     text-align: left;
+     display: grid;
+     box-shadow: 0 3px 2px rgba(0,0,0,0.2);
+     grid-template-columns: 2fr 1fr;
+     transition: all 0.3s ease-in-out;
+     color: black;
+   }
+   .stockTab:hover
+   {
+     background-color: #eee ;
+     transform: translateY(-1px);
+     border-bottom: 2px solid #6028e5;
+     
+   }
+   .stockTab div
+   {
+     margin-top: -35px;
+   }
+   .stockTab h4
+   {
+     color: steelblue;
+   }
+   .stockTab div p
+   {
+     display: inline;
+     font-size: 10pt;
+   }
+   
+   .stockTab-container
+   {
+     overflow-y: auto;
+   }
+   .grid-2
+   {
+     color: #6028e5;
+     display: grid;
+     background-color: #fff;
+     grid-template-columns: 4fr 2fr;
+   }
+   .myStock-balances
+   {
+     width: 100%;
+     border-bottom: 2px solid #ddd;
+   }
+   .sell button
+   {
+     background-color: red;
+   }
+   footer div i 
+   {
+     color: #1c0357;
+   }
+   #profit
+   {
+     color: green;
+   }
+   #stockBuy-container
+   {
+     display: none;
+     position: fixed;
+     margin-inline: 5%;
+     width: 90%;
+     z-index: 7;
+     background-color: #6028e5;
+     color: #fff;
+     margin-top: -400px;
+     padding-block: 5px;
+     border-radius: 8px;
+   }
+   #stockBuy-container input
+   {
+     height: 30px;
+     border: none;
+     background-color: #ddd;
+     border-radius: 8px;
+     outline-color: #6028e5;
+   }
+.positive,.negative
+{
+  font-size: 30px;
+}
+.positive
+{
+  color: green;
+}
+.negative
+{
+  color: red;
+}
+option
+{
+  background-color: #6028e5;
+}

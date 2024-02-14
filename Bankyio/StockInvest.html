@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/css/fontawesome.css" rel="stylesheet">
+    <link href="assets/css/brands.css" rel="stylesheet">
+    <link href="assets/css/solid.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js"></script>
+   <script src="js/Stock.js"></script>
+  <title>Public Bank - Stock Investment</title>
+ <style>
+ body
+ {
+   background-color: #fff;
+ }
+
+ </style>
+ <script>
+   function changePage(toThisId)
+   {
+     //clear all first
+     document.getElementById("stocksPage").style.display = "none";
+     document.getElementById("myStock").style.display = "none";
+     document.getElementById("stockHistory").style.display = "none";
+     //then apply
+     document.getElementById(toThisId).style.display = "block";
+   }
+ </script>
+  </head>
+  <body>
+    
+    <div id="stocksPage" class="stocksPage">
+      <div class="stocksHeader">
+        <h3>Available Stock</h3>
+        <i class="fa fa-search float-right" style="margin-top: -45px; font-size: 13pt;"><p>Search</p></i>
+      </div>
+      <div class="stockTab-container" style="margin-top: 60px">
+      <center>
+      <div class="stockTab">
+        <h4 id="stockName-1">RIM Stock</h4>
+        
+        <button onclick="stockBuy('rim');">Buy</button>
+        <div>
+        <h5 id="stockCP-1">1 278,56</h5>
+        <br>
+        <span><p>High: </p></span><p id="stockHigh-1">1 576,77</p>
+        <span><p>Low: </p></span><p id="stockLow-1">2000</p>
+        </div>
+        <input type="text" hidden id="stockPrice-1">
+      </div>
+      <div class="stockTab">
+        <h4 id="stockName-2">RIM Stock</h4>
+        
+        <button onclick="stockBuy('banky');">Buy</button>
+        <div>
+        <h5 id="stockCP-2">1 278,56</h5>
+        <br>
+        <span><p>High: </p></span><p id="stockHigh-2">10000</p>
+        <p>Low: </p><p id="stockLow-2">10000</p>
+        </div>
+        <input type="text" hidden id="stockPrice-2">
+      </div>
+      <div class="stockTab">
+        <h4 id="stockName-3">RIM Stock</h4>
+        
+        <button onclick="stockBuy('buse');">Buy</button>
+        <div>
+        <h5 id="stockCP-3">1 278,56</h5>
+        <br>
+        <span><p>High: </p></span><p id="stockHigh-3">100</p>
+        <p>Low: </p><p id="stockLow-3">99999</p>
+        </div>
+        <input type="text" hidden id="stockPrice-3">
+      </div>
+      <div class="stockTab">
+        <h4 id="stockName-4">RIM Stock</h4>
+        
+        <button>Buy</button>
+        <div>
+        <h5 id="stockCP-4">C/P: R 1 278,56</h5>
+        <br>
+        <p id="stockHigh-4">High: R 1 576,77</p>
+        <p id="stockLow-4">Low: R 954,67</p>
+        </div>
+        <input type="text" hidden id="stockPrice-4">
+      </div>
+  
+      </center>
+      </div>
+    </div>
+    <div id="myStock" style="display: none;"class="myStock-page">
+      <div class="stocksHeader">
+        <h3 id="profit">+R 134,55</h3>
+      </div>
+      <div style="margin-top: 60px"></div>
+      <div class="myStock-balances grid-2">
+        <h4>Balance</h4>
+        <h4>: R 334,57</h4>
+        <h4>My stock</h4>
+        <h4>: 2</h4>
+      </div>
+      <div class="stockTab sell">
+        <h4>RIM</h4>
+        <button>Sell</button>
+        <div>
+          <h5>Profit: R 134,55</h5>
+          <br>
+          <p>C/P: 1 929,93 </p>
+          <p>| B/P: 1 056,39</p>
+        </div>
+      </div>
+      <div class="stockTab sell">
+        <h4>RIM-micro</h4>
+        <button>Sell</button>
+        <div>
+          <h5>Profit: R 14,29</h5>
+          <br>
+          <p>C/P: 929,93 </p>
+          <p>| B/P: 556,39</p>
+        </div>
+      </div>
+    </div>
+        
+    <div id="stockHistory" class="stockHistory-page" style="display: none;">
+      <div class="stocksHeader">
+        <h3>History</h3>
+      </div>
+      <div style="margin-top: 60px"></div>
+      <div class="myStock-balances grid-2">
+        <h4>Total Profit</h4>
+        <h4>: R 3 034,57</h4>
+        <h4>Total stock</h4>
+        <h4>: 8</h4>
+      </div>
+      <div class="stockTab sell">
+        <h4>RIM</h4>
+        <button>Delete</button>
+        <div>
+          <h5>R 2 437,89</h5>
+          <br>
+          <p>S/P: 2 577,43</p>
+          <p>B/P: 986,67</p>
+        </div>
+      </div>
+    </div>
+    <center>
+    <div id="stockBuy-container">
+      <i class="fa fa-xmark float-right" style="color: red;" onclick="document.getElementById('stockBuy-container').style.display = 'none';"></i>
+      <h4 id="stockName">
+       BuSe 
+      </h4>
+      <h5 id="stockPrice">Price</h5>
+      <br>
+      <form action="javascript:void(0)">
+      <label>Quantity:</label>
+      <br>
+      <input onchange="stockBuy();"type="text" value="0" id="buyQuantity">
+      
+      <p id="amount">Amount to pay</p>
+      
+      <input type="text" hidden="true" id="buyAmount">
+      <button onclick="buyConfirmed();" id="stockBuy-btn">Buy</button>
+      </form>
+      
+    </div>
+    </center>
+    <div style="margin-bottom: 50px"></div>
+    
+  </body>
+  <footer style="position: fixed; bottom: 0;">
+    <div style="background-color: #fff; color: #1c0357;">
+      <i onclick="history.back();" class="fa fa-home">
+        <p>Home</p>
+      </i>
+      <i onclick="changePage('stocksPage');" class="fa fa-database iCenter">
+        <p>Stock</p>
+      </i>
+      
+      <i onclick="changePage('myStock')"class="fa fa-coins">
+        <p>My Stock</p>
+      </i>
+      <i onclick="changePage('stockHistory');"class="fa fa-line-chart">
+        <p>History</p>
+      </i>
+    </div>
+  </footer>
+</html>

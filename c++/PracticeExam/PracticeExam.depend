@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1699573276 source:c:\users\thato\onedrive\desktop\loopykiid\practiceexam\main.cpp
+	<iostream>
+	<string>
+	<iomanip>
+	<time.h>
+	<fstream>
+
