@@ -1,4 +1,5 @@
 # Loopy-Web-Projects
+!discontinued, I will develop a similar application with clean code and will use a tech stack probably MERN stack...
 
 <i><b>!!All the projects in this folder were developed on a smartphone and are not optimized for desktop or larger devices and other features are not yet completed</b></i><br><br>
 This is a project with other projects within, making it look like a server. The first page or project is the Pydex which shows all the projects within the folder/server and it also allows you to use the search option to search for the specific project within the folder/server.
