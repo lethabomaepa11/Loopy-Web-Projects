@@ -18,7 +18,8 @@ These 2 apps are connected in a way that you can login to the Bankyio app via th
 <h2>How to use on your device</h2>
   <ul>
     <li>Install Xampp or any application that offers php, apache and mysql</li>
-    <li>Download the "loopy_localhost.sql" file and import into your php/myadmin server, this will import the settings and databases</li>
+    <li>Clone this repository</li>
+    <li>Import "loopy_localhost.sql" into your php/myadmin server, this will import the settings and databases</li>
     <li>Download the compressed files for the media files https://drive.google.com/file/d/1u5DzKnypTxiah5xPeWtyDHLMaGfs9Oxg/view?usp=sharing</li>
     <li>Extract the files above to the LoopyLite/assets/ folder</li>
     <li>Run it on your browser's localhost</li>
